@@ -1,0 +1,97 @@
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { MapPin } from 'lucide-react';
+
+export function Hero() {
+  const handleNavClick = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  return (
+    <section 
+      id="top" 
+      className="relative min-h-[100dvh] flex items-center justify-center pt-20 overflow-hidden"
+    >
+      {/* Background Image & Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/images/hero-bg.jpg" 
+          alt="Screen printing texture" 
+          className="w-full h-full object-cover opacity-30 object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
+        {/* Grain overlay */}
+        <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+      </div>
+
+      <div className="container relative z-10 mx-auto px-4 md:px-6 flex flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl"
+        >
+          <h2 className="text-primary font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-6 drop-shadow-[0_0_10px_rgba(31,255,0,0.5)]">
+            O'Brien Marketing Group
+          </h2>
+          
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-foreground uppercase leading-[0.9] mb-8">
+            We STRIVE<br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#80ff00]">so you THRIVE</span>
+          </h1>
+          
+          <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
+            Screen Printing, Embroidery, Vinyl Wraps &amp; Custom Promotional Solutions
+          </p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-col items-center gap-6"
+          >
+            <Button 
+              size="lg"
+              onClick={() => handleNavClick('#contact')}
+              className="bg-primary text-black hover:bg-primary/90 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_20px_rgba(31,255,0,0.2)] hover:shadow-[0_0_30px_rgba(31,255,0,0.4)] rounded-none font-bold uppercase tracking-widest px-10 py-8 text-lg h-auto"
+            >
+              Get Started
+            </Button>
+            
+            <div className="flex items-center gap-2 text-muted-foreground text-sm font-medium">
+              <MapPin size={16} className="text-primary" />
+              <span>605 Gilmer Rd | Longview, Texas</span>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Scroll</span>
+        <motion.div 
+          animate={{ y: [0, 10, 0] }} 
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+          className="w-[2px] h-[30px] bg-gradient-to-b from-primary to-transparent"
+        />
+      </motion.div>
+    </section>
+  );
+}

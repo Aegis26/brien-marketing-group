@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "O'Brien Marketing Group"
+description = "A bold, mobile-first marketing website for O'Brien Marketing Group in Longview, Texas, showcasing screen printing, embroidery, vehicle wraps, signage, decals, and promotional products with clear contact actions."
+version = "1.0.0"
+id = "artifacts/omg-marketing"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22729
+
+[services.development]
+run = "pnpm --filter @workspace/omg-marketing run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/omg-marketing", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/omg-marketing/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22729"
+BASE_PATH = "/"
