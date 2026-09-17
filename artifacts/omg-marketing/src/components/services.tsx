@@ -9,7 +9,7 @@ const services = [
   {
     title: "Screen Printing",
     description: "High-quality screen printing for apparel, bags, and promotional items with precision color matching and durability.",
-    image: "/images/portfolio-screenprint.jpg"
+    image: "/images/portfolio-screen-printing.png"
   },
   {
     title: "Embroidery",

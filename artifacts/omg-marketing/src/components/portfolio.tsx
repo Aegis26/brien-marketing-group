@@ -7,7 +7,7 @@ const portfolioItems = [
   },
   {
     title: "Screen Printing",
-    image: "/images/portfolio-screenprint.jpg"
+    image: "/images/portfolio-screen-printing.png"
   },
   {
     title: "Embroidery",
