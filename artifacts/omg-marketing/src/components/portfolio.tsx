@@ -19,7 +19,7 @@ const portfolioItems = [
   },
   {
     title: "Signs & Banners",
-    image: "/images/portfolio-signs.jpg"
+    image: "/images/portfolio-signs-banners.png"
   },
   {
     title: "Custom Apparel",
