@@ -11,7 +11,7 @@ const portfolioItems = [
   },
   {
     title: "Embroidery",
-    image: "/images/portfolio-embroidery.jpg"
+    image: "/images/portfolio-embroidery-custom.png"
   },
   {
     title: "Vinyl & Decals",

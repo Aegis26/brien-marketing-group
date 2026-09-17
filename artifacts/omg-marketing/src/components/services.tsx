@@ -14,7 +14,7 @@ const services = [
   {
     title: "Embroidery",
     description: "Professional embroidery services for hats, polos, jackets, and custom apparel with detailed stitch work.",
-    image: "/images/portfolio-embroidery.jpg"
+    image: "/images/portfolio-embroidery-custom.png"
   },
   {
     title: "Vinyl Wraps",
