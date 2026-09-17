@@ -15,7 +15,7 @@ const portfolioItems = [
   },
   {
     title: "Vinyl & Decals",
-    image: "/images/portfolio-decals.jpg"
+    image: "/images/portfolio-decals-custom.png"
   },
   {
     title: "Signs & Banners",

@@ -24,7 +24,7 @@ const services = [
   {
     title: "Decals",
     description: "Custom decals for windows, vehicles, equipment, products, and more—made to look sharp and last.",
-    image: "/images/portfolio-decals.jpg"
+    image: "/images/portfolio-decals-custom.png"
   },
   {
     title: "And More",
