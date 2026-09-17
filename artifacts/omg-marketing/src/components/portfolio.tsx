@@ -29,7 +29,7 @@ const portfolioItems = [
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="bg-card py-24 md:py-32 relative z-10">
+    <section id="portfolio" className="bg-card py-24 md:py-32 relative z-10 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 max-w-[1400px]">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -44,34 +44,26 @@ export function Portfolio() {
           <div className="w-24 h-1 bg-primary mx-auto mt-6"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {portfolioItems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative aspect-[4/3] bg-background border-2 border-primary/20 overflow-hidden hover:border-primary transition-colors duration-300"
+      </div>
+
+      <div className="work-gallery" aria-label="A continuously moving gallery of O'Brien Marketing Group projects">
+        <div className="work-gallery-track">
+          {[...portfolioItems, ...portfolioItems].map((item, index) => (
+            <figure
+              key={`${item.title}-${index}`}
+              className="work-gallery-item group"
+              aria-hidden={index >= portfolioItems.length}
             >
-              {/* Image */}
-              <img 
-                src={item.image} 
-                alt={item.title}
-                className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700 ease-[0.22,1,0.36,1]"
+              <img
+                src={item.image}
+                alt={index < portfolioItems.length ? item.title : ""}
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              {/* Title */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <div className="w-8 h-1 bg-primary mb-3"></div>
-                <h3 className="text-primary font-display font-bold uppercase tracking-widest text-lg md:text-xl">
-                  {item.title}
-                </h3>
-              </div>
-            </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent" />
+              <figcaption className="absolute bottom-0 left-0 right-0 p-5 text-primary font-display font-bold uppercase tracking-widest">
+                {item.title}
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

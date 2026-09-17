@@ -1,36 +1,35 @@
 import { motion } from 'framer-motion';
-import { Layers, Scissors, CarFront, Signpost, Sticker, Sparkles } from 'lucide-react';
 
 const services = [
   {
     title: "Signs / Banners",
     description: "Professional signs, banners, and large-format graphics designed to get your business noticed.",
-    icon: Signpost
+    image: "/images/portfolio-signs-banners.png"
   },
   {
     title: "Screen Printing",
     description: "High-quality screen printing for apparel, bags, and promotional items with precision color matching and durability.",
-    icon: Layers
+    image: "/images/portfolio-screenprint.jpg"
   },
   {
     title: "Embroidery",
     description: "Professional embroidery services for hats, polos, jackets, and custom apparel with detailed stitch work.",
-    icon: Scissors
+    image: "/images/portfolio-embroidery.jpg"
   },
   {
     title: "Vinyl Wraps",
     description: "Custom vinyl wraps for vehicles, buildings, and large format applications that make a statement.",
-    icon: CarFront
+    image: "/images/portfolio-wrap.jpg"
   },
   {
     title: "Decals",
     description: "Custom decals for windows, vehicles, equipment, products, and more—made to look sharp and last.",
-    icon: Sticker
+    image: "/images/portfolio-decals.jpg"
   },
   {
     title: "And More",
     description: "Need something different? Talk with our team about promotional products and custom solutions for your next project.",
-    icon: Sparkles
+    image: "/images/portfolio-apparel.jpg"
   }
 ];
 
@@ -81,18 +80,20 @@ export function Services() {
             <motion.div 
               key={index}
               variants={itemVariants}
-              className="bg-card p-8 group relative overflow-hidden flex flex-col"
+              className="bg-card group relative overflow-hidden flex flex-col border border-white/5 hover:border-primary/50 transition-colors duration-300"
             >
-              {/* Left border accent */}
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/30 group-hover:w-2 group-hover:bg-primary transition-all duration-300"></div>
-              
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.03] transition-colors duration-300"></div>
-              
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-background border border-primary/20 flex items-center justify-center mb-6 group-hover:border-primary group-hover:shadow-[0_0_15px_rgba(31,255,0,0.2)] transition-all duration-300">
-                  <service.icon size={32} className="text-primary" />
-                </div>
+              <div className="aspect-[4/3] overflow-hidden bg-background">
+                <img
+                  src={service.image}
+                  alt={`${service.title} example`}
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
+
+              <div className="relative z-10 p-8 flex-1">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/40 group-hover:w-2 group-hover:bg-primary transition-all duration-300" />
+                <div className="absolute inset-0 -z-10 bg-primary/0 group-hover:bg-primary/[0.03] transition-colors duration-300" />
+                <div className="w-10 h-1 bg-primary mb-5" />
                 <h3 className="text-xl font-display font-bold uppercase text-primary tracking-wide mb-4">
                   {service.title}
                 </h3>

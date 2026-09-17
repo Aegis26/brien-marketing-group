@@ -182,6 +182,55 @@
   }
 }
 
+@keyframes work-gallery-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.75rem));
+  }
+}
+
+.work-gallery {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.work-gallery-track {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  animation: work-gallery-scroll 34s linear infinite;
+  will-change: transform;
+}
+
+.work-gallery-item {
+  position: relative;
+  width: clamp(18rem, 32vw, 30rem);
+  aspect-ratio: 4 / 3;
+  flex: none;
+  overflow: hidden;
+  border: 2px solid hsl(var(--primary) / 0.3);
+  background: hsl(var(--background));
+  transition: border-color 300ms ease;
+}
+
+.work-gallery-item:hover {
+  border-color: hsl(var(--primary));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-gallery {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .work-gallery-track {
+    animation: none;
+  }
+}
+
 /**
  * Using the elevate system.
  * Automatic contrast adjustment.
