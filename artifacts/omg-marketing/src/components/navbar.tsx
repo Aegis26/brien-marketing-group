@@ -56,7 +56,7 @@ export function Navbar() {
           <img
             src={`${import.meta.env.BASE_URL}images/obrien-marketing-group-logo.png`}
             alt="O'Brien Marketing Group"
-            className="h-12 md:h-16 w-auto object-contain"
+            className="h-36 md:h-48 w-auto object-contain"
           />
         </a>
 
