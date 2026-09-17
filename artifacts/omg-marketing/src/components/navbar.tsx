@@ -47,12 +47,17 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <a 
-          href="#top" 
+        <a
+          href="#top"
           onClick={(e) => { e.preventDefault(); handleNavClick('#top'); }}
-          className="text-primary font-display font-bold text-2xl md:text-3xl tracking-tighter hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+          className="block hover:opacity-85 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+          aria-label="O'Brien Marketing Group — back to top"
         >
-          OMG
+          <img
+            src={`${import.meta.env.BASE_URL}images/obrien-marketing-group-logo.png`}
+            alt="O'Brien Marketing Group"
+            className="h-12 md:h-16 w-auto object-contain"
+          />
         </a>
 
         {/* Desktop Nav */}
