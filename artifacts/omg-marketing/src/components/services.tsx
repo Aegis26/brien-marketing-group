@@ -1,7 +1,12 @@
 import { motion } from 'framer-motion';
-import { Layers, Scissors, CarFront, Signpost, Package } from 'lucide-react';
+import { Layers, Scissors, CarFront, Signpost, Sticker, Sparkles } from 'lucide-react';
 
 const services = [
+  {
+    title: "Signs / Banners",
+    description: "Professional signs, banners, and large-format graphics designed to get your business noticed.",
+    icon: Signpost
+  },
   {
     title: "Screen Printing",
     description: "High-quality screen printing for apparel, bags, and promotional items with precision color matching and durability.",
@@ -18,14 +23,14 @@ const services = [
     icon: CarFront
   },
   {
-    title: "Decals & Signs",
-    description: "Professional signage, banners, yard signs, and decals for business branding and visibility.",
-    icon: Signpost
+    title: "Decals",
+    description: "Custom decals for windows, vehicles, equipment, products, and more—made to look sharp and last.",
+    icon: Sticker
   },
   {
-    title: "Promotional Items",
-    description: "Custom branded merchandise and promotional products tailored to your marketing goals.",
-    icon: Package
+    title: "And More",
+    description: "Need something different? Talk with our team about promotional products and custom solutions for your next project.",
+    icon: Sparkles
   }
 ];
 
@@ -44,7 +49,7 @@ const itemVariants = {
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.5, ease: "easeOut" as const }
   }
 };
 
@@ -76,9 +81,7 @@ export function Services() {
             <motion.div 
               key={index}
               variants={itemVariants}
-              className={`bg-card p-8 group relative overflow-hidden flex flex-col ${
-                index === 3 ? 'lg:col-start-1 lg:col-span-1.5' : ''
-              } ${index === 4 ? 'lg:col-span-1.5' : ''}`}
+              className="bg-card p-8 group relative overflow-hidden flex flex-col"
             >
               {/* Left border accent */}
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/30 group-hover:w-2 group-hover:bg-primary transition-all duration-300"></div>

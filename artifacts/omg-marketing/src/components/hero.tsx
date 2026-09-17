@@ -53,7 +53,7 @@ export function Hero() {
           </h1>
           
           <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
-            Screen Printing, Embroidery, Vinyl Wraps &amp; Custom Promotional Solutions
+            Signs / Banners, Screen Printing, Embroidery, Vinyl Wraps, Decals &amp; More
           </p>
 
           <motion.div
