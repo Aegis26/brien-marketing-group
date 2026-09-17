@@ -59,10 +59,6 @@ export function Portfolio() {
                 alt={index < portfolioItems.length ? item.title : ""}
                 className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent" />
-              <figcaption className="absolute bottom-0 left-0 right-0 p-5 text-primary font-display font-bold uppercase tracking-widest">
-                {item.title}
-              </figcaption>
             </figure>
           ))}
         </div>
