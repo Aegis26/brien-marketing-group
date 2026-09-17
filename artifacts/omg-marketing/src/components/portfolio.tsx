@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const portfolioItems = [
   {
     title: "Vehicle Wraps",
-    image: "/images/portfolio-wrap.jpg"
+    image: "/images/portfolio-vinyl-wraps.png"
   },
   {
     title: "Screen Printing",
