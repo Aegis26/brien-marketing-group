@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { SiFacebook } from 'react-icons/si';
+import { SiFacebook, SiInstagram } from 'react-icons/si';
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -165,15 +165,26 @@ export function Contact() {
       {/* Footer */}
       <footer className="bg-card border-t border-primary/30 py-16">
         <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center">
-          <a 
-            href="https://www.facebook.com/omgoflongview" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-14 h-14 border-2 border-primary bg-background text-primary flex items-center justify-center hover:bg-primary hover:text-black transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card mb-10"
-            aria-label="Visit our Facebook page"
-          >
-            <SiFacebook size={24} />
-          </a>
+          <div className="flex items-center gap-4 mb-10">
+            <a 
+              href="https://www.facebook.com/omgoflongview" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-14 h-14 border-2 border-primary bg-background text-primary flex items-center justify-center hover:bg-primary hover:text-black transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+              aria-label="Visit our Facebook page"
+            >
+              <SiFacebook size={24} />
+            </a>
+            <a 
+              href="https://www.instagram.com/obrienmarketinggroup/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-14 h-14 border-2 border-primary bg-background text-primary flex items-center justify-center hover:bg-primary hover:text-black transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+              aria-label="Visit our Instagram page"
+            >
+              <SiInstagram size={24} />
+            </a>
+          </div>
 
           <div className="flex items-center justify-center gap-2 text-primary font-bold text-lg mb-4">
             <MapPin size={20} />
