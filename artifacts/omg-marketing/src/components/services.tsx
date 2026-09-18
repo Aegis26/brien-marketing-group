@@ -19,7 +19,7 @@ const services = [
   {
     title: "Vinyl Wraps",
     description: "Custom vinyl wraps for vehicles, buildings, and large format applications that make a statement.",
-    image: "/images/vinyl-wraps-axis-energy.png"
+    image: "/images/work-coors-trailer-wrap.png"
   },
   {
     title: "Decals",
