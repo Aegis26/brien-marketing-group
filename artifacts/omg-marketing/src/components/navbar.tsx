@@ -66,14 +66,14 @@ export function Navbar() {
             <button
               key={link.name}
               onClick={() => handleNavClick(link.href)}
-              className="text-foreground hover:text-primary font-medium text-sm tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-1"
+              className="electric-nav text-foreground text-[13px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-1"
             >
               {link.name}
             </button>
           ))}
           <Button 
             onClick={() => handleNavClick('#contact')}
-            className="bg-primary text-black hover:bg-primary/90 hover:-translate-y-0.5 transition-transform shadow-[0_0_15px_rgba(31,255,0,0.3)] hover:shadow-[0_0_20px_rgba(31,255,0,0.5)] rounded-none font-bold uppercase tracking-widest px-6"
+            className="electric-button font-display rounded-none px-7 font-black uppercase italic tracking-[0.14em]"
           >
             Get Started
           </Button>
@@ -103,14 +103,14 @@ export function Navbar() {
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-foreground hover:text-primary text-xl font-medium text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded p-2"
+                  className="electric-nav text-foreground text-xl text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded p-2"
                 >
                   {link.name}
                 </button>
               ))}
               <Button 
                 onClick={() => handleNavClick('#contact')}
-                className="bg-primary text-black hover:bg-primary/90 mt-4 rounded-none font-bold uppercase tracking-widest py-6 w-full"
+                className="electric-button font-display mt-4 w-full rounded-none py-6 font-black uppercase italic tracking-[0.14em]"
               >
                 Get Started
               </Button>

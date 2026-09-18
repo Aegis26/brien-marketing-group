@@ -43,13 +43,13 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-4xl"
         >
-          <h2 className="text-primary font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-6 drop-shadow-[0_0_10px_rgba(31,255,0,0.5)]">
+          <h2 className="electric-text font-display font-extrabold italic uppercase tracking-[0.24em] text-sm md:text-base mb-6">
             O'Brien Marketing Group
           </h2>
           
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-foreground uppercase leading-[0.9] mb-8">
             We STRIVE<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#80ff00]">so you THRIVE</span>
+            <span className="electric-text">so you THRIVE</span>
           </h1>
           
           <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -65,7 +65,7 @@ export function Hero() {
             <Button 
               size="lg"
               onClick={() => handleNavClick('#contact')}
-              className="bg-primary text-black hover:bg-primary/90 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_20px_rgba(31,255,0,0.2)] hover:shadow-[0_0_30px_rgba(31,255,0,0.4)] rounded-none font-bold uppercase tracking-widest px-10 py-8 text-lg h-auto"
+              className="electric-button font-display rounded-none px-10 py-8 text-lg h-auto font-black uppercase italic tracking-[0.14em]"
             >
               Get Started
             </Button>
