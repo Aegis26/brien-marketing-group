@@ -2,10 +2,6 @@ import { motion } from 'framer-motion';
 
 const portfolioItems = [
   {
-    title: "Vehicle Wraps",
-    image: "/images/portfolio-vinyl-wraps.png"
-  },
-  {
     title: "Screen Printing",
     image: "/images/portfolio-screen-printing.png"
   },
