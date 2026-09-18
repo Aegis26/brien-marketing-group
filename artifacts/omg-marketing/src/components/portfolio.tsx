@@ -24,6 +24,34 @@ const portfolioItems = [
   {
     title: "Custom Apparel",
     image: "/images/portfolio-apparel.jpg"
+  },
+  {
+    title: "Custom Embroidered Hat",
+    image: "/images/work-embroidered-hat.png"
+  },
+  {
+    title: "Coors Light Trailer Wrap",
+    image: "/images/work-coors-trailer-wrap.png"
+  },
+  {
+    title: "Mosquito Joe Truck Wrap",
+    image: "/images/work-mosquito-joe-truck-wrap.png"
+  },
+  {
+    title: "Shiner Trailer Wrap",
+    image: "/images/work-shiner-trailer-wrap.png"
+  },
+  {
+    title: "Miller Lite Trailer Wrap",
+    image: "/images/work-miller-lite-trailer-wrap.png"
+  },
+  {
+    title: "Custom Project",
+    image: "/images/work-project-06.png"
+  },
+  {
+    title: "Custom Branded Project",
+    image: "/images/work-project-07.png"
   }
 ];
 
