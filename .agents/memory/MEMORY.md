@@ -1,0 +1,1 @@
+- [GitHub and Railway authentication](github-railway-auth.md) — if the GitHub App attaches but Git stays unauthenticated, use a repository-scoped token via Secrets.
