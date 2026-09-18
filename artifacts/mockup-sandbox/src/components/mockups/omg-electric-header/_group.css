@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --omg-green: #1fff00;
+  --omg-green-hot: #b8ff9e;
+  --omg-black: #0a0a0a;
+}
+
+.omg-preview {
+  font-family: 'Inter', sans-serif;
+  background: var(--omg-black);
+}
+
+.omg-display {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.electric-text {
+  color: transparent;
+  background: linear-gradient(
+    100deg,
+    #16c900 0%,
+    var(--omg-green) 22%,
+    #efffe9 38%,
+    var(--omg-green) 48%,
+    #54ff38 72%,
+    #0caf00 100%
+  );
+  background-size: 260% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: drop-shadow(0 0 5px rgba(31, 255, 0, 0.82))
+    drop-shadow(0 0 15px rgba(31, 255, 0, 0.34));
+  animation: electric-flow 3.1s linear infinite, electric-breathe 2.6s ease-in-out infinite;
+}
+
+.electric-button {
+  position: relative;
+  isolation: isolate;
+  background: var(--omg-green);
+  color: #020502;
+  box-shadow:
+    0 0 8px rgba(31, 255, 0, 0.95),
+    0 0 24px rgba(31, 255, 0, 0.52),
+    0 0 54px rgba(31, 255, 0, 0.2);
+  animation: electric-button-breathe 2.2s ease-in-out infinite;
+}
+
+.electric-button::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  inset: -3px;
+  padding: 3px;
+  background: conic-gradient(
+    from var(--electric-angle),
+    transparent 0deg 34deg,
+    #dfffd8 48deg,
+    var(--omg-green) 66deg,
+    transparent 84deg 176deg,
+    #86ff72 196deg,
+    var(--omg-green) 214deg,
+    transparent 236deg 360deg
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 3px 3px, 3px calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 3px, 3px 3px);
+  animation: electric-orbit 2.4s linear infinite;
+}
+
+.electric-button::after {
+  content: '';
+  position: absolute;
+  z-index: -3;
+  inset: -11px;
+  opacity: 0.72;
+  background:
+    linear-gradient(94deg, transparent 8%, rgba(31,255,0,.85) 9%, transparent 10%) 0 14% / 100% 2px no-repeat,
+    linear-gradient(274deg, transparent 70%, rgba(223,255,216,.92) 71%, transparent 72%) 0 86% / 100% 1px no-repeat;
+  filter: blur(1px);
+  animation: electric-spark 1.6s steps(1, end) infinite;
+}
+
+.electric-nav {
+  position: relative;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-style: italic;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 rgba(31, 255, 0, 0.08);
+}
+
+.electric-nav::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: -7px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--omg-green), #e7ffe2, var(--omg-green), transparent);
+  box-shadow: 0 0 10px rgba(31, 255, 0, 0.85);
+  transition: left 220ms ease, right 220ms ease;
+}
+
+.electric-nav:hover {
+  color: var(--omg-green);
+  transform: skewX(-7deg) translateY(-1px);
+  text-shadow: 0 0 10px rgba(31, 255, 0, 0.72);
+}
+
+.electric-nav:hover::after {
+  left: 0;
+  right: 0;
+  animation: electric-nav-flicker 850ms steps(2, end) infinite;
+}
+
+@property --electric-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes electric-flow {
+  to { background-position: -260% 0; }
+}
+
+@keyframes electric-breathe {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(31,255,0,.72)) drop-shadow(0 0 12px rgba(31,255,0,.26)); }
+  50% { filter: drop-shadow(0 0 7px rgba(31,255,0,1)) drop-shadow(0 0 22px rgba(31,255,0,.5)); }
+}
+
+@keyframes electric-orbit {
+  to { --electric-angle: 360deg; }
+}
+
+@keyframes electric-button-breathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(31,255,0,.9), 0 0 22px rgba(31,255,0,.45), 0 0 45px rgba(31,255,0,.16); }
+  50% { box-shadow: 0 0 12px rgba(31,255,0,1), 0 0 32px rgba(31,255,0,.72), 0 0 68px rgba(31,255,0,.28); }
+}
+
+@keyframes electric-spark {
+  0%, 30%, 100% { opacity: .15; transform: translateX(-2px); }
+  34% { opacity: .95; transform: translateX(3px); }
+  36% { opacity: .25; }
+  72% { opacity: .8; transform: translateX(-4px); }
+}
+
+@keyframes electric-nav-flicker {
+  0%, 100% { opacity: 1; }
+  46% { opacity: .48; }
+  49% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .electric-text,
+  .electric-button,
+  .electric-button::before,
+  .electric-button::after,
+  .electric-nav:hover::after {
+    animation: none !important;
+  }
+}
