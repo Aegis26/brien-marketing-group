@@ -1,4 +1,4 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { createHmac, scryptSync, timingSafeEqual } from "node:crypto";
 import { Router, type IRouter, type Request } from "express";
 import { desc } from "drizzle-orm";
 import { db, contactLeadsTable } from "@workspace/db";
@@ -15,10 +15,27 @@ const router: IRouter = Router();
 const COOKIE_NAME = "omg_admin_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 12;
 
-function getRequiredSecret(name: "ADMIN_PASSWORD" | "SESSION_SECRET"): string {
+function getRequiredSecret(name: "SESSION_SECRET"): string {
   const value = process.env[name];
   if (!value) throw new Error(`${name} is required`);
   return value;
+}
+
+function isCorrectAdminPassword(password: string): boolean {
+  const passwordHash = process.env.ADMIN_PASSWORD_HASH;
+  if (passwordHash) {
+    const [algorithm, saltHex, expectedHex] = passwordHash.split("$");
+    if (algorithm !== "scrypt" || !saltHex || !expectedHex) return false;
+    const supplied = scryptSync(password, Buffer.from(saltHex, "hex"), 64);
+    const expected = Buffer.from(expectedHex, "hex");
+    return supplied.length === expected.length && timingSafeEqual(supplied, expected);
+  }
+
+  const configuredPassword = process.env.ADMIN_PASSWORD;
+  if (!configuredPassword) throw new Error("ADMIN_PASSWORD or ADMIN_PASSWORD_HASH is required");
+  const supplied = Buffer.from(password);
+  const expected = Buffer.from(configuredPassword);
+  return supplied.length === expected.length && timingSafeEqual(supplied, expected);
 }
 
 function signSession(expiresAt: number): string {
@@ -71,9 +88,7 @@ router.post("/admin/login", (req, res): void => {
     return;
   }
 
-  const supplied = Buffer.from(parsed.data.password);
-  const expected = Buffer.from(getRequiredSecret("ADMIN_PASSWORD"));
-  if (supplied.length !== expected.length || !timingSafeEqual(supplied, expected)) {
+  if (!isCorrectAdminPassword(parsed.data.password)) {
     res.status(401).json({ error: "Incorrect password." });
     return;
   }
