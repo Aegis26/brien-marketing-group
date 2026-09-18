@@ -29,7 +29,7 @@ const services = [
   {
     title: "And More",
     description: "Need something different? Talk with our team about promotional products and custom solutions for your next project.",
-    image: "/images/portfolio-apparel.jpg"
+    image: "/images/portfolio-apparel-custom.png"
   }
 ];
 

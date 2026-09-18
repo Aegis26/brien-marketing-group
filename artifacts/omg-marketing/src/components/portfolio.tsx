@@ -23,7 +23,7 @@ const portfolioItems = [
   },
   {
     title: "Custom Apparel",
-    image: "/images/portfolio-apparel.jpg"
+    image: "/images/portfolio-apparel-custom.png"
   },
   {
     title: "Custom Embroidered Hat",
