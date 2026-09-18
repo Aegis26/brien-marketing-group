@@ -5,38 +5,33 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { SiFacebook, SiInstagram } from 'react-icons/si';
+import { useCreateContactLead } from '@workspace/api-client-react';
 
 export function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const createLead = useCreateContactLead();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Extract form data
+    setSubmitError('');
     const formData = new FormData(e.currentTarget);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    
-    // Construct mailto link
-    const subject = encodeURIComponent(`Website Inquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    const mailtoUrl = `mailto:sales@theOMGshop.com?subject=${subject}&body=${body}`;
-    
-    // Simulate slight delay for UX, then open email client
-    setTimeout(() => {
-      window.location.href = mailtoUrl;
-      setIsSubmitting(false);
+    const form = e.currentTarget;
+
+    try {
+      await createLead.mutateAsync({
+        data: {
+          name: String(formData.get('name') ?? ''),
+          email: String(formData.get('email') ?? ''),
+          message: String(formData.get('message') ?? ''),
+        },
+      });
       setIsSent(true);
-      
-      // Reset form visually
-      (e.target as HTMLFormElement).reset();
-      
-      // Reset success message after a few seconds
+      form.reset();
       setTimeout(() => setIsSent(false), 5000);
-    }, 600);
+    } catch {
+      setSubmitError('Your message could not be sent. Please try again or contact us by phone or email.');
+    }
   };
 
   return (
@@ -101,11 +96,16 @@ export function Contact() {
           >
             <div className="mb-8 text-center">
               <p className="text-muted-foreground text-sm uppercase tracking-wider">
-                Fill out the form below to open a draft in your email client.
+                Fill out the form below and our team will follow up with you.
               </p>
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
+              {submitError && (
+                <p role="alert" className="border border-red-500/50 bg-red-500/10 p-4 text-sm text-red-200">
+                  {submitError}
+                </p>
+              )}
               <div className="space-y-2">
                 <label htmlFor="name" className="text-primary text-xs font-bold uppercase tracking-widest block">
                   Name
@@ -148,14 +148,14 @@ export function Contact() {
 
               <Button 
                 type="submit" 
-                disabled={isSubmitting || isSent}
+                disabled={createLead.isPending || isSent}
                 className={`w-full h-14 rounded-none font-bold uppercase tracking-widest text-lg transition-all duration-300 ${
                   isSent 
                     ? 'bg-transparent border-2 border-primary text-primary hover:bg-transparent cursor-default' 
                     : 'bg-primary text-black hover:bg-primary/90 hover:-translate-y-1 shadow-[0_0_15px_rgba(31,255,0,0.2)] hover:shadow-[0_0_25px_rgba(31,255,0,0.4)]'
                 }`}
               >
-                {isSubmitting ? 'Preparing Email...' : isSent ? 'Email Draft Opened!' : 'Send Message'}
+                {createLead.isPending ? 'Sending...' : isSent ? 'Message Sent!' : 'Send Message'}
               </Button>
             </form>
           </motion.div>

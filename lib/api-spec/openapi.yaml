@@ -10,6 +10,10 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: contact
+    description: Public contact form operations
+  - name: admin
+    description: Password-protected lead administration
 paths:
   /healthz:
     get:
@@ -24,6 +28,86 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /contact-leads:
+    post:
+      operationId: createContactLead
+      tags: [contact]
+      summary: Submit a contact lead
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateContactLead"
+      responses:
+        "201":
+          description: Lead submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactLead"
+        "400":
+          description: Invalid submission
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /admin/login:
+    post:
+      operationId: adminLogin
+      tags: [admin]
+      summary: Start an admin session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminCredentials"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSession"
+        "401":
+          description: Incorrect password
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /admin/leads:
+    get:
+      operationId: listContactLeads
+      tags: [admin]
+      summary: List contact leads newest first
+      responses:
+        "200":
+          description: Contact leads
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContactLead"
+        "401":
+          description: Admin session required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+  /admin/logout:
+    post:
+      operationId: adminLogout
+      tags: [admin]
+      summary: End the admin session
+      responses:
+        "200":
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSession"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +117,50 @@ components:
           type: string
       required:
         - status
+    CreateContactLead:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        message:
+          type: string
+          minLength: 1
+          maxLength: 5000
+      required: [name, email, message]
+    ContactLead:
+      allOf:
+        - $ref: "#/components/schemas/CreateContactLead"
+        - type: object
+          properties:
+            id:
+              type: integer
+            createdAt:
+              type: string
+              format: date-time
+          required: [id, createdAt]
+    AdminSession:
+      type: object
+      properties:
+        authenticated:
+          type: boolean
+      required: [authenticated]
+    AdminCredentials:
+      type: object
+      properties:
+        password:
+          type: string
+          minLength: 1
+      required: [password]
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+      required: [error]
 

@@ -5,9 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
 
 export interface CreateContactLead {
   /**
@@ -23,22 +20,3 @@ export interface CreateContactLead {
      */
   message: string;
 }
-
-export type ContactLead = CreateContactLead & {
-  id: number;
-  createdAt: string;
-};
-
-export interface AdminSession {
-  authenticated: boolean;
-}
-
-export interface AdminCredentials {
-  /** @minLength 1 */
-  password: string;
-}
-
-export interface ApiError {
-  error: string;
-}
-
